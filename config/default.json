@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://nermine:nermine@devconnector-cn6vt.mongodb.net/test?retryWrites=true&w=majority"
+}
