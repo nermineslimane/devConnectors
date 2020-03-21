@@ -211,7 +211,7 @@ router.put('/comment/:id/:comment_id', auth, async (req, res) => {
       .indexOf(req.user.id)
     post.comments.splice(removeIndex, 1)
     await post.save()
-    res.json(post.likes)
+    res.json(post.comments)
   } catch (err) {
     if (err.kind == 'ObjectId') {
       return res.status(400).json({ msg: 'No comment' })
