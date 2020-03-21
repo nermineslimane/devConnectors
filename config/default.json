@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb+srv://nermine:nermine@devconnector-cn6vt.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "secretToken"
+  "jwtSecret": "secretToken",
+  "githubClientId": "53621af90bbcf448f58f",
+  "githubSecret": "078c483fa2d97dfa25d97a67aa260bc8bed0e89c"
 }
