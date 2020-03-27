@@ -1,5 +1,11 @@
 import React from 'react'
-export const Landing = () => {
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom'
+export const Landing = ({ isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard'></Redirect>
+  }
   return (
     <section class='landing'>
       <div className='dark-overlay'>
@@ -22,5 +28,10 @@ export const Landing = () => {
     </section>
   )
 }
-
-export default Landing
+Landing.propTypes = {
+  isAuthenticated: PropTypes.bool
+}
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+export default connect(mapStateToProps)(Landing)
