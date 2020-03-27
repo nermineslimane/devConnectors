@@ -176,25 +176,26 @@ router.put(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() })
     }
-    const {
-      title,
-      company,
-      location,
-      from,
-      to,
-      current,
-      description
-    } = req.body
-    const newExp = {
-      title,
-      company,
-      location,
-      from,
-      to,
-      current,
-      description
-    }
     try {
+      const {
+        title,
+        company,
+        location,
+        from,
+        to,
+        current,
+        description
+      } = req.body
+      const newExp = {
+        title,
+        company,
+        location,
+        from,
+        to,
+        current,
+        description
+      }
+
       const profile = await Profile.findOne({ user: req.user.id })
       profile.experience.unshift(newExp)
       await profile.save()

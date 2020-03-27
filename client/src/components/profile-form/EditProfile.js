@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { createProfile, getCurrentProfile } from '../../actions/profile'
 import { Link, withRouter } from 'react-router-dom'
 const EditProfile = ({
-  getCurrentProfile,
   profile: { profile, loading },
   createProfile,
+  getCurrentProfile,
   history
 }) => {
   const [formData, setFormData] = useState({
@@ -34,14 +34,14 @@ const EditProfile = ({
       status: loading || !profile.status ? '' : profile.status,
       githubusername:
         loading || !profile.githubusername ? '' : profile.githubusername,
-      skills: loading || !profile.skills ? '' : profile.skills,
+      skills: loading || !profile.skills ? '' : profile.skills.join(','),
       youtube: loading || !profile.youtube ? '' : profile.youtube,
       facebook: loading || !profile.facebook ? '' : profile.facebook,
       twitter: loading || !profile.twitter ? '' : profile.twitter,
       instagram: loading || !profile.instagram ? '' : profile.instagram,
       linkedin: loading || !profile.linkedin ? '' : profile.linkedin
     })
-  })
+  }, [loading])
   const {
     company,
     website,
@@ -56,19 +56,16 @@ const EditProfile = ({
     instagram,
     linkedin
   } = formData
+
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value })
+
   const onSubmit = e => {
     e.preventDefault()
     createProfile(formData, history, true)
   }
   return (
     <Fragment>
-      <h1 className='large text-primary'>Create Your Profile</h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i> Let's get some information to make your
-        profile stand out
-      </p>
       <small>* = required field</small>
       <form className='form' onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
@@ -223,9 +220,9 @@ const EditProfile = ({
           </Fragment>
         )}
         <input type='submit' className='btn btn-primary my-1' />
-        <a className='btn btn-light my-1' href='dashboard.html'>
+        <Link className='btn btn-light my-1' to='/dashboard'>
           Go Back
-        </a>
+        </Link>
       </form>
     </Fragment>
   )
